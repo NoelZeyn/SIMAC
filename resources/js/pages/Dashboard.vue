@@ -131,7 +131,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 import iconKalender from "@/assets/kalender.svg";
 import iconLaporan from "@/assets/laporan.svg";
 import iconStetoskop from "@/assets/stetoskop.svg";
-import iconPasien from "@/assets/pasien.svg";
+import iconPasien from "@/assets/folder.svg";
 import iconPosyandu from "@/assets/posko.svg";
 
 import Chart from 'chart.js/auto';

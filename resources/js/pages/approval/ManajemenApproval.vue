@@ -154,7 +154,7 @@
                             </h3>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="min-w-full table-fixed border-collapse border border-gray-300">
+                            <table class="min-w-full table-auto border-collapse border border-gray-300">
                                 <thead class="bg-gray-100 text-[#7d7f81]">
                                     <tr>
                                         <th class="w-20 p-3 border">Nama Barang</th>
@@ -267,7 +267,7 @@
                                 </thead>
                                 <tbody>
                                     <!-- bidang dlu baru di loop barang -->
-                                    <template v-for="(group, groupIndex) in dataGroupedByBidang" :key="groupIndex">
+                                    <template v-for="(group, groupIndex) in paginatedGroupedByBidang" :key="groupIndex">
                                         <template v-for="(barang, index) in group.barang" :key="index">
                                             <tr class="text-[#333436]">
                                                 <!-- Tampilkan nama bidang hanya di baris pertama dari group -->
@@ -312,6 +312,22 @@
                                     </template>
                                 </tbody>
                             </table>
+                            <div
+                                class="flex justify-between items-center px-4 py-3 border-t border-gray-300 text-sm text-[#333436]">
+                                <button @click="prevPageAdmin" :disabled="currentPageAdmin === 1"
+                                    class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50">
+                                    Prev
+                                </button>
+
+                                <span>
+                                    Halaman {{ currentPageAdmin }} dari {{ totalPagesAdmin }}
+                                </span>
+
+                                <button @click="nextPageAdmin" :disabled="currentPageAdmin === totalPagesAdmin"
+                                    class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50">
+                                    Next
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -352,6 +368,7 @@ export default {
             pengajuanList: [],
             PengajuanBaruList: [],
             dataGroupedByBidang: [],
+            currentPageAdmin: 1,
 
             informasiIcon,
             updateIcon,
@@ -437,6 +454,44 @@ export default {
         isSuperAdmin() {
             return this.tingkatanOtoritas === "superadmin";
         },
+        paginatedGroupedByBidang() {
+            const flatBarang = [];
+
+            this.dataGroupedByBidang.forEach(group => {
+                group.barang.forEach(barang => {
+                    flatBarang.push({
+                        ...barang,
+                        id_bidang_fk: group.id_bidang_fk,
+                        nama_bidang: group.nama_bidang,
+                    });
+                });
+            });
+            const start = (this.currentPageAdmin - 1) * this.itemsPerPage;
+            const paginated = flatBarang.slice(start, start + this.itemsPerPage);
+
+            const grouped = {};
+            paginated.forEach(item => {
+                if (!grouped[item.id_bidang_fk]) {
+                    grouped[item.id_bidang_fk] = {
+                        id_bidang_fk: item.id_bidang_fk,
+                        nama_bidang: item.nama_bidang,
+                        barang: [],
+                    };
+                }
+                grouped[item.id_bidang_fk].barang.push(item);
+            });
+
+            return Object.values(grouped);
+        },
+
+        totalPagesAdmin() {
+            const totalBarang = this.dataGroupedByBidang.reduce(
+                (sum, g) => sum + g.barang.length,
+                0
+            );
+            return Math.ceil(totalBarang / this.itemsPerPage) || 1;
+        },
+
     },
 
     async created() {
@@ -655,7 +710,16 @@ export default {
         prevPage() {
             if (this.currentPage > 1) this.currentPage--;
         },
-
+        nextPageAdmin() {
+            if (this.currentPageAdmin < this.totalPagesAdmin) {
+                this.currentPageAdmin++;
+            }
+        },
+        prevPageAdmin() {
+            if (this.currentPageAdmin > 1) {
+                this.currentPageAdmin--;
+            }
+        },
         nextPagePengajuanBaru() {
             if (this.currentPagePengajuanBaru < this.totalPagesPengajuanBaru)
                 this.currentPagePengajuanBaru++;
