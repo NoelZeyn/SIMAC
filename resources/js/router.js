@@ -104,13 +104,11 @@ const routes = [
     { path: "/surat-ba", component: SuratBeritaAcara, meta: { requiresAuth: true, title: "Surat Berita Acara" } },
 ];
 
-// Membuat router
 const router = createRouter({
     history: createWebHistory(),
     routes,
 });
 
-// Middleware validasi token
 router.beforeEach((to, from, next) => {
   const tokenValid = isTokenValid();
 
@@ -128,7 +126,6 @@ router.beforeEach((to, from, next) => {
       return next("/"); // bisa ganti dengan route lain
     }
   }
-  // ✅ Validasi role (hanya jika route mengatur allowedRoles)
   if (to.meta.allowedRoles && user) {
     const userRole = user.tingkatan_otoritas;
     if (!to.meta.allowedRoles.includes(userRole)) {

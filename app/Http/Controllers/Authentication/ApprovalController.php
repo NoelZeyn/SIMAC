@@ -48,7 +48,6 @@ class ApprovalController extends Controller
 
             $admin = Admin::with('dataDiri')->where('NID', $validate['NID'])->firstOrFail();
 
-            // Ambil nama lengkap admin atau fallback NID
             $namaLengkap = $admin->dataDiri && $admin->dataDiri->nama_lengkap
                 ? $admin->dataDiri->nama_lengkap
                 : $admin->NID;
@@ -127,7 +126,6 @@ class ApprovalController extends Controller
 
             $admin = Admin::with('dataDiri')->where('NID', $validate['NID'])->firstOrFail();
 
-            // Ambil nama lengkap admin atau fallback NID
             $namaLengkap = $admin->dataDiri && $admin->dataDiri->nama_lengkap
                 ? $admin->dataDiri->nama_lengkap
                 : $admin->NID;
@@ -207,7 +205,6 @@ class ApprovalController extends Controller
 
             $admin = Admin::with('dataDiri')->where('NID', $validate['NID'])->firstOrFail();
 
-            // Ambil nama lengkap admin atau fallback NID
             $namaLengkap = $admin->dataDiri->nama_lengkap
                 ? $admin->dataDiri->nama_lengkap
                 : $admin->NID;

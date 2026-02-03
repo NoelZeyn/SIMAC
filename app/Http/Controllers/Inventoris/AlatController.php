@@ -97,10 +97,8 @@ class AlatController extends Controller
     try {
         $alat = Alat::findOrFail($id);
 
-        // Simpan data lama sebelum update
         $oldData = $alat->toArray();
 
-        // Validasi data baru
         $validatedData = $request->validate([
             'id_kategori_fk' => 'required|exists:kategori_pengadaan,id_kategori',
             'nama_barang' => 'required|string|max:255',
@@ -114,10 +112,8 @@ class AlatController extends Controller
             'keterangan' => 'nullable|string|max:500'
         ]);
 
-        // Lakukan update
         $alat->update($validatedData);
 
-        // Cek perbedaan & buat deskripsi perubahan
         $changes = [];
         foreach ($validatedData as $key => $newValue) {
             $oldValue = $oldData[$key] ?? null;
@@ -127,7 +123,6 @@ class AlatController extends Controller
             }
         }
 
-        // Jika ada perubahan, simpan ke history
         if (count($changes) > 0) {
             HistoryAtk::create([
                 'id_admin_fk' => Auth::id(),
@@ -164,7 +159,6 @@ public function destroy(string $id)
         $namaBarang = $alat->nama_barang;
         $idAlat = $alat->id_alat;
 
-        // Cek jika sudah dinonaktifkan sebelumnya
         if (
             $alat->stock == 0 &&
             $alat->stock_min == 0 &&

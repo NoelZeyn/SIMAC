@@ -7,7 +7,7 @@
                 class="space-y-2 p-8 bg-black/50 h-full flex flex-col items-center justify-center text-center mb-5 w-[100%]">
                 <h2 class="text-3xl font-bold">Selamat Datang</h2>
                 <p class="text-base leading-relaxed text-white/90">
-                    Sistem ATK PLN adalah platform yang dirancang untuk
+                    Sistem Pengadaan PLN adalah platform yang dirancang untuk
                     memudahkan pengelolaan dan pemantauan Manajemen ATK di PT.
                     PLN Nusantara Power UP Gresik.
                 </p>

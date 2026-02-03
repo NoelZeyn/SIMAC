@@ -73,16 +73,13 @@ class ProfileController extends Controller
                 ], 422);
             }
 
-            // Update password (jika diisi dan beda)
             if ($request->filled('password') && !Hash::check($request->password, $admin->password)) {
                 $admin->password = Hash::make($request->password);
                 $admin->save();
             }
 
-            // Update data diri
             $dataDiriData = $request->only(['nama_lengkap', 'jabatan', 'bpjs', 'kontak']);
 
-            // Upload foto
             if ($request->hasFile('foto_profil')) {
                 $path = $request->file('foto_profil')->store('Photo-Profile');
 
@@ -97,7 +94,6 @@ class ProfileController extends Controller
                     Storage::delete($admin->dataDiri->foto_profil);
                 }
 
-                // Update foto_profil di relasi data_diri
                 if ($admin->dataDiri) {
                     $admin->dataDiri->update(['foto_profil' => $path]);
                 } else {
