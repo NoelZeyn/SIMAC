@@ -5,7 +5,7 @@
 
         <!-- Main Content -->
         <div class="flex-1 p-4 md:p-8 pt-6 flex flex-col bg-white">
-            <HeaderBar title="Form Pengajuan ATK Baru" />
+            <HeaderBar title="Form Pengajuan Barang Baru" />
             <div class="border-b border-gray-300 mb-4"></div>
 
             <div class="bg-white p-4 md:p-6 rounded-2xl shadow w-full max-w-5xl mx-auto">
@@ -15,7 +15,7 @@
                     <div v-for="(item, index) in formData.items" :key="index"
                         class="border border-gray-200 p-4 rounded-lg shadow-sm space-y-4">
                         <div class="flex justify-between items-center mb-2">
-                            <h4 class="font-semibold text-sm text-[#333]">Pengajuan ATK {{ index + 1 }}</h4>
+                            <h4 class="font-semibold text-sm text-[#333]">Pengajuan Barang {{ index + 1 }}</h4>
                             <button v-if="formData.items.length > 1" @click="removeItem(index)"
                                 class="text-red-500 text-xs hover:underline cursor-pointer">
                                 Hapus
@@ -67,7 +67,7 @@
                     <!-- Tambah Item -->
                     <button @click="addItem"
                         class="mt-2 w-fit bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer">
-                        + Tambah Pengajuan ATK
+                        + Tambah Pengajuan Barang
                     </button>
 
                     <!-- Alert Sukses -->
@@ -163,7 +163,7 @@ export default {
                     item.harga_estimasi === "" ||
                     item.harga_estimasi === null
                 ) {
-                    this.errors.push(`Form pengajuan ATK ke-${index + 1} belum lengkap.`);
+                    this.errors.push(`Form pengajuan Barang ke-${index + 1} belum lengkap.`);
                     return true;
                 }
                 return false;
@@ -179,7 +179,7 @@ export default {
                 await axios.post("http://localhost:8000/api/pengajuan-baru", this.formData, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
-                this.successMessage = "Pengajuan ATK berhasil disimpan.";
+                this.successMessage = "Pengajuan Barang Baru berhasil disimpan.";
                 this.showSuccessAlert = true;
                 setTimeout(() => {
                     this.showSuccessAlert = false;

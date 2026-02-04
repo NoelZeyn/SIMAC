@@ -510,7 +510,7 @@ export default {
         async downloadExcels() {
             try {
                 const workbook = new ExcelJS.Workbook();
-                const worksheet = workbook.addWorksheet("Pengajuan ATK Baru");
+                const worksheet = workbook.addWorksheet("Pengajuan Barang Baru");
 
                 // Header Kolom
                 worksheet.columns = [

@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\DB;
 class PengajuanIntiController extends Controller
 {
 
-
     public function manajerAll()
     {
         $requests = RequestPengadaan::with(['alat', 'user.penempatan'])
@@ -91,9 +90,22 @@ class PengajuanIntiController extends Controller
             }
 
             foreach ($pengajuanList as $pengajuan) {
-                $pengajuan->status = 'waiting_approval_3';
-                $pengajuan->status_by = $namaLengkap;
-                $pengajuan->save();
+
+                // 1️⃣ Update status request
+                $pengajuan->update([
+                    'status'    => 'waiting_approval_3',
+                    'status_by' => $namaLengkap,
+                ]);
+
+                // 2️⃣ BUAT approval baru 
+                Approval::create([
+                    'id_request_fk' => $pengajuan->id_request,
+                    'id_admin_fk'   => $user->id,
+                    'level_approval' => 'Manajer',
+                    'status'        => 'approved',
+                    'tanggal'       => now()->toDateString(),
+                    'catatan'       => null,
+                ]);
             }
 
             return response()->json([
@@ -140,12 +152,24 @@ class PengajuanIntiController extends Controller
             }
 
             foreach ($pengajuanList as $pengajuan) {
-                $pengajuan->status = 'rejected';
-                $pengajuan->status_by = $namaLengkap;
-                $pengajuan->keterangan = $request->keterangan;
-                $pengajuan->save();
-            }
 
+                // 1️⃣ Update status request
+                $pengajuan->update([
+                    'status'    => 'rejected',
+                    'status_by' => $namaLengkap,
+                    'keterangan' => $request->keterangan,
+                ]);
+
+                // 2️⃣ BUAT approval baru 
+                Approval::create([
+                    'id_request_fk' => $pengajuan->id_request,
+                    'id_admin_fk'   => $user->id,
+                    'level_approval' => 'Manajer',
+                    'status'        => 'rejected',
+                    'tanggal'       => now()->toDateString(),
+                    'catatan'       => null,
+                ]);
+            }
             return response()->json([
                 'status'  => 'success',
                 'message' => 'Semua pengajuan berhasil ditolak.',

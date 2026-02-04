@@ -54,7 +54,7 @@ class AdminSeeder extends Seeder
                 'id_bidang_fk'       => $penempatan->id_bidang_fk,
                 'tingkatan_otoritas' => $faker->randomElement($tingkatanList),
                 'access'             => $faker->randomElement($accessList),
-                'password_changed_at'=> now(),
+                'password_changed_at' => now(),
             ]);
 
             // rotasi 1–25, bukan lompat random
@@ -68,15 +68,7 @@ class AdminSeeder extends Seeder
          */
         $penempatanUtama = $penempatans->first();
 
-        Admin::create([
-            'NID'                => '8813066ZJY',
-            'password'           => Hash::make('password123'),
-            'id_penempatan_fk'   => $penempatanUtama->id,
-            'id_bidang_fk'       => $penempatanUtama->id_bidang_fk,
-            'tingkatan_otoritas' => 'superadmin',
-            'access'             => 'active',
-            'password_changed_at'=> now(),
-        ]);
+
 
         /**
          * =================================
@@ -95,7 +87,7 @@ class AdminSeeder extends Seeder
                 'id_bidang_fk'       => $penempatanIT->id_bidang_fk,
                 'tingkatan_otoritas' => 'superadmin',
                 'access'             => 'active',
-                'password_changed_at'=> now(),
+                'password_changed_at' => now(),
             ]);
         }
 
@@ -114,9 +106,18 @@ class AdminSeeder extends Seeder
                 'password'           => Hash::make('password123'),
                 'id_penempatan_fk'   => $penempatanKeuangan->id,
                 'id_bidang_fk'       => $penempatanKeuangan->id_bidang_fk,
-                'tingkatan_otoritas' => 'user',
+                'tingkatan_otoritas' => 'asman',
                 'access'             => 'active',
-                'password_changed_at'=> now(),
+                'password_changed_at' => now(),
+            ]);
+            Admin::create([
+                'NID'                => '8813066ZJY',
+                'password'           => Hash::make('password123'),
+                'id_penempatan_fk'   => $penempatanKeuangan->id,
+                'id_bidang_fk'       => $penempatanKeuangan->id_bidang_fk,
+                'tingkatan_otoritas' => 'manajer',
+                'access'             => 'active',
+                'password_changed_at' => now(),
             ]);
         }
     }
