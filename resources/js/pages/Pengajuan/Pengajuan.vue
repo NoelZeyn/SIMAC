@@ -20,11 +20,11 @@
                 <div class="bg-white rounded-lg shadow border border-gray-300 mt-8 overflow-hidden">
                     <div class="flex justify-between items-center px-5 p-3 border-b border-gray-300">
                         <h3 class="text-sm font-semibold text-gray-900">
-                            Data List Pengajuan ATK Baru
+                            Data List Pengajuan Pengadaan Baru
                         </h3>
                         <router-link to="/pengajuan-atk-add"
                             class="text-sm font-semibold text-[#074a5d] no-underline hover:text-[#0066cc] hover:no-underline">
-                            Tambah Pengajuan ATK Baru
+                            Tambah Pengajuan Pengadaan Baru
                         </router-link>
                     </div>
                     <div class="overflow-x-auto">

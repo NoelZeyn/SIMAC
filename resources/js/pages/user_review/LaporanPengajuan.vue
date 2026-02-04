@@ -18,7 +18,7 @@
                 <div class="bg-white rounded-lg shadow border border-gray-300 mt-8 overflow-hidden">
                     <div class="flex justify-between items-center px-5 p-3 border-b border-gray-300">
                         <h3 class="text-sm font-semibold text-gray-900">
-                            Data List Pengajuan ATK Baru
+                            Data List Pengajuan Pengadaan Baru
                         </h3>
                         <button @click="downloadExcels"
                             class="flex items-center gap-2 px-4 cursor-pointer py-2 bg-[#08607a] hover:bg-[#065666] text-white text-sm rounded-lg shadow transition duration-200">

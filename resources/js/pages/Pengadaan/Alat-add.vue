@@ -3,21 +3,21 @@
     <Sidebar :activeMenu="activeMenu" @update:activeMenu="activeMenu = $event" />
 
     <div class="flex-1 p-4 sm:p-6 md:p-8 pt-7 flex flex-col bg-white overflow-auto">
-      <HeaderBar title="Tambah ATK" />
+      <HeaderBar title="Tambah Barang" />
       <div class="border-b border-gray-300"></div>
 
       <div class="bg-white p-4 sm:p-6 rounded-2xl shadow mt-6">
-        <h3 class="text-[15px] text-[#074a5d] font-semibold mb-4">Tambah ATK</h3>
+        <h3 class="text-[15px] text-[#074a5d] font-semibold mb-4">Tambah Barang</h3>
         <div class="h-[1px] w-full bg-gray-300 my-4"></div>
 
         <div class="flex flex-col gap-6 sm:gap-5">
-          <h4 class="text-[15px] font-medium text-black text-center pb-3">Form Tambah ATK</h4>
+          <h4 class="text-[15px] font-medium text-black text-center pb-3">Form Tambah Barang</h4>
 
-          <!-- Nama ATK -->
+          <!-- Nama Barang -->
           <div class="flex flex-col gap-1 w-full">
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
-              <label class="sm:min-w-[150px] font-semibold text-sm text-black">Nama ATK</label>
-              <input type="text" v-model="formData.nama_barang" placeholder="Nama ATK"
+              <label class="sm:min-w-[150px] font-semibold text-sm text-black">Nama Barang</label>
+              <input type="text" v-model="formData.nama_barang" placeholder="Nama Barang"
                 :class="['w-full p-2 border rounded-lg bg-gray-100 text-sm', errors.nama_barang ? 'border-red-500' : 'border-gray-300']" />
             </div>
             <span v-if="errors.nama_barang" class="text-red-500 text-xs sm:ml-[150px] -mt-1">{{ errors.nama_barang
@@ -27,10 +27,10 @@
           <!-- Kategori -->
           <div class="flex flex-col gap-1 w-full">
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
-              <label class="sm:min-w-[150px] font-semibold text-sm text-black">Kategori ATK</label>
+              <label class="sm:min-w-[150px] font-semibold text-sm text-black">Kategori Barang</label>
               <select v-model="formData.id_kategori_fk"
                 :class="['w-full p-2 border rounded-lg bg-gray-100 text-sm', errors.id_kategori_fk ? 'border-red-500' : 'border-gray-300']">
-                <option disabled value="">Pilih Kategori ATK</option>
+                <option disabled value="">Pilih Kategori Barang</option>
                 <option v-for="item in kategoriList" :key="item.id_kategori" :value="item.id_kategori">
                   {{ item.nama_kategori }}
                 </option>
@@ -44,7 +44,7 @@
           <div class="flex flex-col gap-1 w-full">
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
               <label class="sm:min-w-[150px] font-semibold text-sm text-black">Keterangan</label>
-              <textarea v-model="formData.keterangan" placeholder="Keterangan ATK"
+              <textarea v-model="formData.keterangan" placeholder="Keterangan Barang"
                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm resize-y"></textarea>
             </div>
           </div>
@@ -75,7 +75,7 @@
 
             <button @click="submitATK"
               class="cursor-pointer w-full sm:w-auto bg-[#074a5d] text-white px-4 py-2 rounded-lg hover:bg-[#063843] transition">
-              Tambahkan ATK
+              Tambahkan Barang
             </button>
           </div>
         </div>
@@ -121,13 +121,13 @@ export default {
           key: "stock_min",
           label: "Stock Minimal",
           type: "number",
-          placeholder: "Stock Min ATK",
+          placeholder: "Stock Min Barang",
         },
         {
           key: "stock_max",
           label: "Stock Maximal",
           type: "number",
-          placeholder: "Stock Max ATK",
+          placeholder: "Stock Max Barang",
         },
         {
           key: "stock",
@@ -139,19 +139,19 @@ export default {
           key: "satuan",
           label: "Satuan",
           type: "text",
-          placeholder: "Satuan ATK",
+          placeholder: "Satuan Barang, Contoh: Unit, Buah, Lembar",
         },
         {
           key: "harga_satuan",
           label: "Harga Satuan",
           type: "number",
-          placeholder: "Harga Satuan ATK, Contoh: 10000",
+          placeholder: "Harga Satuan Barang, Contoh: 10000",
         },
         {
           key: "harga_estimasi",
           label: "Harga Estimasi Satuan",
           type: "number",
-          placeholder: "Harga Estimasi Satuan ATK, Contoh: 10000",
+          placeholder: "Harga Estimasi Satuan Barang, Contoh: 10000",
         },
       ],
     };
@@ -179,12 +179,12 @@ export default {
       this.errors = {};
 
       if (!this.formData.nama_barang.trim()) {
-        this.errors.nama_barang = "Nama ATK wajib diisi.";
+        this.errors.nama_barang = "Nama Barang wajib diisi.";
         valid = false;
       }
 
       if (!this.formData.id_kategori_fk) {
-        this.errors.id_kategori_fk = "Kategori ATK wajib dipilih.";
+        this.errors.id_kategori_fk = "Kategori Barang wajib dipilih.";
         valid = false;
       }
 

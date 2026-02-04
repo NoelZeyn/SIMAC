@@ -28,7 +28,7 @@
 
         <div class="bg-white rounded-lg shadow border border-gray-300 mt-8 overflow-hidden">
           <div class="flex justify-between items-center px-5 p-3 border-b border-gray-300">
-            <h3 class="text-sm font-semibold text-gray-900">Data ATK</h3>
+            <h3 class="text-sm font-semibold text-gray-900">Data Barang</h3>
             <button @click="downloadExcel"
               class="cursor-pointer px-3 py-1 rounded bg-[#08607a] text-white text-sm hover:bg-[#074a5d]">
               Download Excel
@@ -252,7 +252,7 @@ export default {
 
     async downloadExcel() {
       const workbook = new ExcelJS.Workbook();
-      const worksheet = workbook.addWorksheet('Data ATK');
+      const worksheet = workbook.addWorksheet('Data Pengadaan');
 
       worksheet.columns = [
         { header: 'No', key: 'no', width: 5 },

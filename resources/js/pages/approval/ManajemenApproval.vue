@@ -121,7 +121,7 @@
 
         <div v-if="isSuperAdmin || isAdmin" class="bg-white rounded-lg shadow border border-gray-300 mt-8 overflow-hidden">
           <div class="flex justify-between items-center px-5 p-3 border-b border-gray-300">
-            <h3 class="text-sm font-semibold text-gray-900">Data List Pengajuan ATK Baru</h3>
+            <h3 class="text-sm font-semibold text-gray-900">Data List Pengajuan Pengadaan Baru</h3>
           </div>
           <div class="overflow-x-auto">
             <table class="min-w-full table-auto border-collapse border border-gray-300">

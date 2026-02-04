@@ -3,29 +3,29 @@
         <Sidebar :activeMenu="activeMenu" @update:activeMenu="activeMenu = $event" />
 
         <div class="flex-1 p-4 sm:p-6 md:p-8 pt-7 flex flex-col bg-white overflow-auto">
-            <HeaderBar title="Informasi ATK" />
+            <HeaderBar title="Informasi Barang" />
             <div class="border-b border-gray-300"></div>
 
             <div class="bg-white p-4 sm:p-6 rounded-2xl shadow mt-6">
-                <h3 class="text-[15px] text-[#074a5d] font-semibold mb-4">Informasi ATK</h3>
+                <h3 class="text-[15px] text-[#074a5d] font-semibold mb-4">Informasi Barang</h3>
                 <div class="h-[1px] w-full bg-gray-300 my-4"></div>
 
                 <div class="flex flex-col gap-6">
-                    <h4 class="text-[15px] font-medium text-black text-center pb-3">Form Informasi ATK</h4>
+                    <h4 class="text-[15px] font-medium text-black text-center pb-3">Form Informasi Barang</h4>
 
                     <!-- Field -->
                     <div class="flex flex-col gap-4">
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
-                            <label class="sm:min-w-[150px] font-semibold text-sm text-black">Nama ATK</label>
-                            <input type="text" v-model="formData.nama_barang" placeholder="Nama ATK" disabled
+                            <label class="sm:min-w-[150px] font-semibold text-sm text-black">Nama Barang</label>
+                            <input type="text" v-model="formData.nama_barang" placeholder="Nama Barang" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm text-gray-700" />
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
-                            <label class="sm:min-w-[150px] font-semibold text-sm text-black">Kategori ATK</label>
+                            <label class="sm:min-w-[150px] font-semibold text-sm text-black">Kategori Barang</label>
                             <select v-model="formData.id_kategori_fk" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm text-gray-700">
-                                <option disabled value="">Pilih Kategori ATK</option>
+                                <option disabled value="">Pilih Kategori Barang</option>
                                 <option v-for="item in kategoriList" :key="item.id_kategori" :value="item.id_kategori">
                                     {{ item.nama_kategori }}
                                 </option>
@@ -34,31 +34,31 @@
 
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
                             <label class="sm:min-w-[150px] font-semibold text-sm text-black">Keterangan</label>
-                            <textarea v-model="formData.keterangan" placeholder="Keterangan ATK" disabled
+                            <textarea v-model="formData.keterangan" placeholder="Keterangan Barang" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm resize-y text-gray-700"></textarea>
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
                             <label class="sm:min-w-[150px] font-semibold text-sm text-black">Stock Minimal</label>
-                            <input type="number" v-model="formData.stock_min" placeholder="Stock Min ATK" disabled
+                            <input type="number" v-model="formData.stock_min" placeholder="Stock Min Barang" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm text-gray-700" />
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
                             <label class="sm:min-w-[150px] font-semibold text-sm text-black">Stock Maximal</label>
-                            <input type="number" v-model="formData.stock_max" placeholder="Stock Max ATK" disabled
+                            <input type="number" v-model="formData.stock_max" placeholder="Stock Max Barang" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm text-gray-700" />
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
                             <label class="sm:min-w-[150px] font-semibold text-sm text-black">Satuan</label>
-                            <input type="text" v-model="formData.satuan" placeholder="Satuan ATK" disabled
+                            <input type="text" v-model="formData.satuan" placeholder="Satuan Barang" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm text-gray-700" />
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
                             <label class="sm:min-w-[150px] font-semibold text-sm text-black">Harga Satuan</label>
-                            <input type="number" v-model="formData.harga_satuan" placeholder="Harga Satuan ATK" disabled
+                            <input type="number" v-model="formData.harga_satuan" placeholder="Harga Satuan Barang" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm text-gray-700" />
                         </div>
 
@@ -66,7 +66,7 @@
                             <label class="sm:min-w-[150px] font-semibold text-sm text-black">Harga Estimasi
                                 Satuan</label>
                             <input type="number" v-model="formData.harga_estimasi"
-                                placeholder="Harga Estimasi Satuan ATK" disabled
+                                placeholder="Harga Estimasi Satuan Barang" disabled
                                 class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-sm text-gray-700" />
                         </div>
                     </div>

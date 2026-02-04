@@ -2,7 +2,7 @@
   <div class="flex flex-col md:flex-row min-h-screen bg-gray-100">
     <Sidebar :activeMenu="activeMenu" @update:activeMenu="updateActiveMenu" />
     <div class="flex-1 p-4 sm:p-6 md:p-8 pt-4 bg-white overflow-auto">
-      <HeaderBar title="Manajemen ATK" class="mt-3" />
+      <HeaderBar title="Manajemen Barang" class="mt-3" />
       <div class="my-4 border-b border-gray-300"></div>
 
       <div class="pb-12">
@@ -20,14 +20,14 @@
               <option value="">Semua Rekomendasi</option>
               <option value="perlu">Perlu Pengajuan</option>
               <option value="aman">Aman</option>
-              <option value="ATK Tidak Digunakan">ATK Tidak Digunakan</option>
+              <option value="ATK Tidak Digunakan">Barang Tidak Digunakan</option>
             </select>
           </div>
         </div>
 
         <div class="bg-white rounded-lg shadow border border-gray-300 mt-8 overflow-hidden">
           <div class="flex flex-wrap gap-2 justify-between items-center px-5 p-3 border-b border-gray-300">
-            <h3 class="text-sm font-semibold text-gray-900">Data ATK</h3>
+            <h3 class="text-sm font-semibold text-gray-900">Data Barang</h3>
 
             <div class="flex flex-wrap gap-2">
               <router-link to="/alat-pemakaian"
@@ -47,7 +47,7 @@
 
               <router-link v-if="tingkatanOtoritas === 'admin' || tingkatanOtoritas === 'superadmin'" to="/alat-add"
                 class="text-sm font-semibold text-[#074a5d] no-underline hover:text-[#0066cc] hover:no-underline">
-                Tambah ATK
+                Tambah Barang
               </router-link>
             </div>
           </div>
@@ -130,7 +130,7 @@
                   <td class="p-3">{{ alat.pusat_stock }}</td>
                   <td class="p-3">
                     <span v-if="alat.stock_min === 0 && alat.stock_max === 0 && alat.stock === 0"
-                      class="text-gray-500 italic">ATK Tidak Digunakan</span>
+                      class="text-gray-500 italic">Barang Tidak Digunakan</span>
                     <span v-else-if="alat.stock <= alat.stock_min" class="text-red-600 font-semibold">Perlu
                       Pengajuan</span>
                     <span v-else class="text-green-600">Aman</span>
@@ -178,7 +178,7 @@ import deleteIcon from "@/assets/Delete.svg";
 import axios from "axios";
 import ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
-// This component manages the inventory of tools (ATK) in the application.
+// This component manages the inventory of tools (Barang) in the application.
 export default {
   name: "ManajemenAlat",
   components: { Sidebar, HeaderBar, ModalConfirm, SuccessAlert },
@@ -291,7 +291,7 @@ export default {
 
     async downloadExcel() {
       const workbook = new ExcelJS.Workbook();
-      const worksheet = workbook.addWorksheet('Data ATK');
+      const worksheet = workbook.addWorksheet('Data Pengadaan');
 
       worksheet.columns = [
         { header: 'No', key: 'no', width: 5 },

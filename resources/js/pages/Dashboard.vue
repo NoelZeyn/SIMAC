@@ -33,7 +33,7 @@
       <!-- Anggaran ATK Chart -->
       <div class="w-full max-w-full xl:max-w-6xl mx-auto bg-white rounded-2xl shadow-xl p-6 sm:p-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-          <h1 class="text-2xl sm:text-3xl font-bold text-[#08607a]">Perbandingan Anggaran ATK</h1>
+          <h1 class="text-2xl sm:text-3xl font-bold text-[#08607a]">Perbandingan Anggaran</h1>
           <div class="flex flex-wrap gap-2">
             <button @click="downloadChart" class="px-3 py-2 bg-[#08607a] hover:bg-[#065666] text-white rounded-md text-sm">
               Download Gambar Grafik
@@ -44,7 +44,7 @@
           </div>
         </div>
         <p class="text-gray-600 mb-4 text-sm">
-          Grafik perbandingan harga satuan, total, dan estimasi kebutuhan ATK.
+          Grafik perbandingan harga satuan, total, dan estimasi kebutuhan barang.
         </p>
         <div class="bg-gray-50 rounded-xl p-4 shadow-inner overflow-x-auto">
           <canvas id="anggaranChart" ref="chartCanvas" class="w-full h-72 sm:h-96"></canvas>
@@ -420,7 +420,7 @@ export default {
 
         const dataAlat = res.data.data || [];
         const workbook = new ExcelJS.Workbook();
-        const worksheet = workbook.addWorksheet('Perbandingan Anggaran ATK');
+        const worksheet = workbook.addWorksheet('Perbandingan Anggaran Pengadaan');
 
         worksheet.columns = [
           { header: 'No', key: 'no', width: 5 },
@@ -505,7 +505,7 @@ export default {
         });
 
         const buffer = await workbook.xlsx.writeBuffer();
-        saveAs(new Blob([buffer]), `Laporan-Anggaran-ATK-${new Date().toISOString().slice(0, 10)}.xlsx`);
+        saveAs(new Blob([buffer]), `Laporan-Anggaran-Pengadaan-${new Date().toISOString().slice(0, 10)}.xlsx`);
       } catch (error) {
         console.error('Gagal membuat laporan Excel:', error);
       }
@@ -514,7 +514,7 @@ export default {
       if (this.chartInstance) {
         const link = document.createElement('a');
         link.href = this.chartInstance.toBase64Image();
-        link.download = `Grafik-ATK-${new Date().toISOString().slice(0, 10)}.png`;
+        link.download = `Grafik-Pengadaan-${new Date().toISOString().slice(0, 10)}.png`;
         link.click();
       }
     },

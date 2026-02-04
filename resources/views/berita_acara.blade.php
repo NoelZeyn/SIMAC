@@ -95,18 +95,18 @@
             </thead>
             <tbody>
                 @forelse ($pengajuan as $i => $item)
-                    <tr>
-                        <td>{{ $i + 1 }}</td>
-                        <td>{{ $item->alat->nama_barang }}</td>
-                        <td>{{ \Carbon\Carbon::parse($item->tanggal_permintaan)->format('d-m-Y') }}</td>
-                        <td>{{ $item->jumlah }}</td>
-                        <td>{{ $item->alat->satuan }}</td>
-                        <td>Rp. {{ number_format($item->total, 0, ',', '.') }}</td>
-                    </tr>
+                <tr>
+                    <td>{{ $i + 1 }}</td>
+                    <td>{{ $item->alat->nama_barang }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->tanggal_permintaan)->format('d-m-Y') }}</td>
+                    <td>{{ $item->jumlah }}</td>
+                    <td>{{ $item->alat->satuan }}</td>
+                    <td>Rp. {{ number_format($item->total, 0, ',', '.') }}</td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="6" style="text-align:center;">Tidak ada data</td>
-                    </tr>
+                <tr>
+                    <td colspan="6" style="text-align:center;">Tidak ada data</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>
@@ -119,7 +119,9 @@
                     <strong>Admin Umum</strong>
                     <div style="min-height: 80px;"></div> <!-- Area kosong untuk tanda tangan/stempel -->
                     <div style="border-bottom: 1px solid #000; width: 60%;">
-                        <span style="font-size: 13px;">(NAMA LENGKAP)</span>
+                        <span style="font-size:13px; color:#6b7280; opacity:0.35;">
+                            (NAMA LENGKAP)
+                        </span>
                     </div>
                     <span style="font-size: 13px;">NID: </span>
                 </td>
